@@ -1,12 +1,17 @@
 <html>
 	<head>
 		<title> Winnect </title>
-		{{>_bootstrap_template}}
+		{{>_scriptsTemplate}}
 	</head>
 	<body>
-		<div class="container">
-			<h1> Please login using Facebook </h1>
-			<a href="/auth/facebook" class="btn btn-primary"> Login </a>
+		{{>_navbarTemplate}}
+		<div class="wrapper" style="margin:0">
+			<div class="section" style="margin: 80px 0">
+				<div class="container">
+					<h2> Please login using Facebook </h1>
+					<a href="/auth/facebook" class="btn btn-primary"> Login </a>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

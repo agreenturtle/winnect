@@ -46,15 +46,19 @@ app.get('/auth/facebook', passport.authenticate('facebook'),
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
 	function(req, res) {
-		res.redirect('/');
+		res.redirect('/admin');
 });
 
 app.get("/", function(req, res){
-	res.render("home");
+	res.redirect("/login");
 });
 
 app.get("/login", function(req, res){
 	res.render("login");
+});
+
+app.get("/admin", function(req, res){
+	res.render("home");
 });
 
 app.listen(app.get("port"), function(){
