@@ -3,7 +3,18 @@ var express = require("express")
 , cookieParser = require("cookie-parser")
 , passport = require("passport")
 , FacebookStrategy = require("passport-facebook").Strategy
-, mustacheExpress = require("mustache-express");
+, mustacheExpress = require("mustache-express")
+, redis;
+
+if(process.env.WINNECT_REDIS_DB_URL){
+	var rtg = require("url").parse(process.env.WINNECT_REDIS_DB_URL);
+	redis = require("redis").createClient(rtg.port, rtg.hostname);
+	
+	redis.auth(rtg.auth.split(":")[1]);
+}
+else{
+	redis = require("redis").createClient();
+}
 
 var app = express();
 

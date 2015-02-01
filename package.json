@@ -9,7 +9,8 @@
 		"cookie-parser":"*",
 		"body-parser": "*",
 		"passport":"*",
-		"passport-facebook":"*"
+		"passport-facebook":"*",
+		"redis":"*"
 	},
 	"engines":{
 		"node":"0.10.x",
