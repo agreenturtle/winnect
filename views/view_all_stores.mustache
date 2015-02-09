@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title> Winnect Admin </title>
+		{{>_scriptsTemplate}}
+	</head>
+	<body>
+		{{>_navbarTemplate}}
+		<div class="wrapper" style="margin:0">
+			<div class="section" style="margin: 80px 0">
+				<div class="container">
+					<h1> View Stores </h1>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th> Name:Store ID </th>
+								<th> </th>
+								<th> </th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#stores}}
+								<tr>
+									<td> <a href="/user/stores/{{.}}" > <div name="cell"> {{.}} </div> </a> </td>
+									<td> <a href="/user/stores/{{.}}" class="btn btn-warning"> Edit </a> </td>
+									<td> <a href="#" class="btn btn-danger"> Delete </a> </td>
+								</tr>
+								{{/stores}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		{{>_footerTemplate}}
+	</body>
+</html>

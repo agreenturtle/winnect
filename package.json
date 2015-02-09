@@ -10,6 +10,8 @@
 		"body-parser": "*",
 		"passport":"*",
 		"passport-facebook":"*",
+		"express-session":"*",
+		"aws-sdk": "*",
 		"redis":"*"
 	},
 	"engines":{

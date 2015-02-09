@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<title> Winnect Admin </title>
+		{{>_scriptsTemplate}}
+	</head>
+	<body>
+		{{>_navbarTemplate}}
+		<div class="wrapper" style="margin:0">
+			<div class="section" style="margin: 80px 0">
+				<div class="container">
+					<p align="right"> <a href="/user/stores" class="btn btn-warning"> Back </a> </p>
+					
+					<form name="store_form" id="store_form_id" class="form col-sm-12" action="#" method="post">
+						<input type="hidden" id="logo_url_id" name="logo_url" value="/public/images/default.png" />
+						
+						{{#store_info}}
+							<div class="form-group col-sm-6">
+								<label> Name </label>
+								<input type="text" name="store_name" class="form-control" id="store_name_id" disabled value={{name}} >
+							</div>
+							<div class="form-group col-sm-6">
+								<label> Admin Role </label>
+								<input type="text" name="store_admin" class="form-control" id="store_admin_id" disabled value={{admin}} >
+							</div>
+						{{/store_info}}
+						
+						<div class="form-group col-sm-12">
+							<label> Please choose logo image: </label>
+							<input class="form-control" type="file" id="files"/>
+							<p id="status"> Preview Image </p>
+							<div style="border:1px solid gray;width:300px;"  id="preview">
+								<img src="/images/default.png" style="width:300px;" />
+							</div>
+						</div>
+						
+						<!-- Submit Button -->
+						<div class="form-group col-sm-12" align="left"> 
+							<button id="submit_button_id" type="submit" class="btn btn-success"> Save Profile </button>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="/js/s3upload.js"></script>
+		<script type="text/javascript">
+			function s3_upload(){
+				var status_elem = document.getElementById("status");
+				var url_elem = document.getElementById("logo_url_id");
+				var preview_elem = document.getElementById("preview");
+				var s3upload = new S3Upload({
+					file_dom_selector: 'files',
+					s3_sign_put_url: '/sign_s3',
+					onProgress: function(percent, message) {
+						status_elem.innerHTML = 'Upload progress: ' + percent + '% ' + message;
+					},
+					onFinishS3Put: function(public_url) {
+						status_elem.innerHTML = 'Upload completed. Uploaded to: '+ public_url;
+						url_elem.value = public_url;
+						preview_elem.innerHTML = '<img src="'+ public_url +'" style="width:300px;" />';
+					},
+					onError: function(status) {
+						status_elem.innerHTML = 'Upload error: ' + status;
+					}
+				});
+			}
+			
+			(function() {
+				var input_element = document.getElementById("files");
+				input_element.onchange = s3_upload;
+			})();
+		</script>
+		{{>_footerTemplate}}
+	</body>
+</html>

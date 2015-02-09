@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title> Winnect Admin </title>
+		{{>_scriptsTemplate}}
+	</head>
+	<body>
+		{{>_navbarTemplate}}
+		<div class="wrapper" style="margin:0">
+			<div class="section" style="margin: 80px 0">
+				<div class="container">
+					<p align="right"> <a href="/user/stores" class="btn btn-warning"> Back </a> </p>
+					
+					<form name="store_form" id="store_form_id" class="form col-sm-12" action="#" method="post">
+						
+						{{#store_info}}
+							<div class="form-group col-sm-6">
+								<label> Name </label>
+								<input type="text" name="store_name" class="form-control" id="store_name_id" disabled value={{name}} >
+							</div>
+							<div class="form-group col-sm-6">
+								<label> Admin Role </label>
+								<input type="text" name="store_admin" class="form-control" id="store_admin_id" disabled value={{admin}} >
+							</div>
+						{{/store_info}}
+						<div class="form-group col-sm-12">
+							<input class="form-control" type="file" id="files"/>
+							<p id="status">Please select a file</p>
+							<div style="border:1px solid gray;width:300px;"  id="preview"><img src="/images/default.png" style="width:300px;" /></div>
+						</div>
+						
+						<!-- Submit Button -->
+						<div class="form-group col-sm-12" align="left"> 
+							<button id="submit_button_id" type="submit" class="btn btn-success"> Save Profile </button>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+		{{>_footerTemplate}}
+	</body>
+</html>
